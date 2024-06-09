@@ -28,40 +28,64 @@ const locations = [
     "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
     "button functions": [buyHealth, buyWeapon, goTown],
     text: "You enter the store."
+  },
+  {name: "cave",
+    "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
+    "button functions": [fightSlime, fightBeast, goTown],
+    text: "You enter the cave. You see some monsters."
+
   }
 ];
 function goTown() {
-    button1.innerText = "Go to store";
-    button2.innerText = "Go to cave";
-    button3.innerText = "Fight dragon";
-    button1.onclick = goStore;
-    button2.onclick = goCave;
-    button3.onclick = fightDragon;
-    text.innerText = "You are in the town square. You see a sign that says \"Store\".";
-  }
-
-
-
-
-
-function goStore(){
-    button1.innerText = "Buy 10 health (10 gold)";
-    button2.innerText = "Buy weapon (30 gold)";
-     button3.innerText = "Go to town square";   
-     button1.onclick = buyHealth;
-    button2.onclick = buyWeapon;
-    button3.onclick = goTown;
-    text.innerText =  "You enter the store.";
+  update(locations[0]);
 }
-function goCave(){
-    button2.innerText = "Buy weapon (30 gold)"; 
-  }
-  function fightDragon() {
-    button3.innerText = "Go to town square"; 
-  }
-  function update(location){
+
+
+
+
+
+function goStore() {
+  update(locations[1]);
+
+}
+function goCave() {
+  update(locations[2]);
+}
+function fightDragon() {
+  button3.innerText = "Go to town square";
+}
+function buyHealth() {
+  if(gold>=10){
+    gold -= 10;
+  health += 10;
+  goldText.innerText = gold;
+  healthText.innerText = health;
+  }else {
+    text.innerText = "You do not have enough gold to buy health."
 
   }
-  button1.onclick= goStore;
-  button2.onclick= goCave;
-  button3.onclick= fightDragon;
+}
+function update(location) {
+
+
+
+}
+
+function fightSlime() {
+
+}
+function fightBeast() {
+
+}
+button1.onclick = goStore;
+button2.onclick = goCave;
+button3.onclick = fightDragon;
+function update(location) {
+  button1.innerText = location["button text"][0];
+  button2.innerText = location["button text"][1];
+  button3.innerText = location["button text"][2];
+  button1.onclick = location["button functions"][0];
+  button2.onclick = location["button functions"][1];
+  button3.onclick = location["button functions"][2];
+  text.innerText = location.text;
+}
